@@ -3,6 +3,7 @@ package com.backend.hrbackend.service;
 import java.util.List;
 
 import com.backend.hrbackend.model.Applicant;
+import com.backend.hrbackend.model.Approval;
 import com.backend.hrbackend.model.JobPosting;
 import com.backend.hrbackend.model.JobRequisition;
 public interface HrServiceInterface {
@@ -22,4 +23,23 @@ public interface HrServiceInterface {
 
     public JobRequisition createJobRequisition(JobRequisition jobRequisition);
     public JobRequisition getRequisition(long id);
+
+    // Approval
+
+     public List<Approval> getAllApprovals();
+
+    public Approval getApproval(long id);
+
+    public Approval createApproval(Approval approval);
+
+    public Approval updateApproval(long id, Approval approval);
+
+    public void deleteApproval(long id);
+
+    //Additional File
+
+    public String getAdditionalFileName();
+    public void setAdditionalFileName(String fileName);
+    public String getAdditionalFilePath();
+    public void setAdditionalFilePath(String filePath);
 }

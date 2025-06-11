@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.hrbackend.model.Applicant;
+import com.backend.hrbackend.model.Approval;
 import com.backend.hrbackend.model.JobPosting;
 import com.backend.hrbackend.model.JobRequisition;
+import com.backend.hrbackend.repository.AdditoinalFileRepository;
 import com.backend.hrbackend.repository.ApplicantRepository;
+import com.backend.hrbackend.repository.ApprovalRepository;
 import com.backend.hrbackend.repository.JobPostingRepository;
 import com.backend.hrbackend.repository.JobRequisitionRepository;
 
@@ -19,6 +22,11 @@ public class HrServiceImplementation implements HrServiceInterface{
 
      @Autowired
      JobRequisitionRepository jobRequisitionRepository;
+
+     @Autowired
+     ApprovalRepository approvalRepository;
+     @Autowired
+     AdditoinalFileRepository additoinalFileRepository;
 
      public List<Applicant> getAllApplicant(){
         return applicantRepository.findAll();
@@ -57,5 +65,57 @@ public class HrServiceImplementation implements HrServiceInterface{
     public JobRequisition getRequisition(long id) {
       return jobRequisitionRepository.findByJobRequisitionId(id);
     }
+      @Autowired
+    public void ApprovalServiceImpl(ApprovalRepository approvalRepository) {
+        this.approvalRepository = approvalRepository;
+    }
+
+    @Override
+    public List<Approval> getAllApprovals() {
+        return approvalRepository.findAll();
+    }
+
+    @Override
+    public Approval getApproval(long id) {
+        return approvalRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Approval not found with id " + id));
+    }
+
+    @Override
+    public Approval createApproval(Approval approval) {
+        return approvalRepository.save(approval);
+    }
+
+    @Override
+    public Approval updateApproval(long id, Approval approval) {
+                // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAdditionalFileName'");
+    }
+
+    @Override
+    public void deleteApproval(long id) {
+        approvalRepository.deleteById(id);
+    }
+    @Override
+    public String getAdditionalFileName() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAdditionalFileName'");
+    }
+    @Override
+    public void setAdditionalFileName(String fileName) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setAdditionalFileName'");
+    }
+    @Override
+    public String getAdditionalFilePath() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAdditionalFilePath'");
+    }
+    @Override
+    public void setAdditionalFilePath(String filePath) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setAdditionalFilePath'");
+    }
+     
     
 }
